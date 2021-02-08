@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        header {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 25px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .first-list {
+            display: flex;
+            flex: 40%;
+            width: 40%;
+            justify-content: center;
+
+        }
+
+        .last-list {
+            display: flex;
+            flex: 40%;
+            width: 40%;
+            justify-content: center;
+
+        }
+
+        ul a {
+            text-decoration: none;
+            color: aliceblue;
+            line-height: 50px;
+        }
+
+        ul li {
+            margin-right: 22px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            flex: 20%;
+            width: 20%;
+            font-weight: 900;
+            color: aqua;
+            font-size: 30px;
+
+        }
+
+        .items {
+            position: absolute;
+            left: 30px;
+            top: 35px;
+            display: none;
+            cursor: pointer;
+            transition: all .4;
+        }
+
+        .items i {
+            font-size: 30px;
+            transition: all .4s;
+        }
+
+        .items i.rotate {
+            transform: rotate(360deg);
+        }
+
+        .items-span {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            display: none;
+            cursor: pointer;
+        }
+
+        .items-span span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            margin-bottom: 4px;
+            transition: all .2s;
+        }
+
+        .items-span.animate span {
+            width: 8px;
+            height: 8px;
+            margin-bottom: 2px;
+            background-color: #ddd;
+
+        }
+
+        @media screen and (max-width: 1200px) {
+            .items {
+                display: block;
+            }
+
+            .items-span {
+                display: block;
+            }
+
+            .first-list {
+                display: block;
+                background-color: aquamarine;
+                position: absolute;
+                top: 92px;
+                left: -40%;
+                text-align: center;
+                transition: all .4s linear;
+
+            }
+
+            .first-list li {
+                margin-left: 22px;
+                transition: all .4s;
+            }
+
+            .first-list li:not(:last-of-type) {
+                border-bottom: 1px solid #333;
+            }
+
+            .first-list li:hover {
+                padding-left: 12px;
+            }
+
+            .first-list.open-1 {
+                left: 0;
+            }
+
+            .last-list {
+                display: none;
+                background-color: aqua;
+                position: absolute;
+                top: 92px;
+                right: 0;
+                text-align: center;
+                transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+
+            .last-list.open-2 {
+                display: block;
+            }
+
+            .last-list li {
+                position: relative;
+                margin-right: 0;
+            }
+
+            .last-list li::before {
+                content: '';
+                position: absolute;
+                width: 95%;
+                height: 2px;
+                background-color: #000;
+                top: 42px;
+                left: 3px;
+                transform: scale(0);
+                transition: all .3s;
+
+            }
+
+            .last-list li:hover::before {
+                transform: scale(1);
+            }
+
+            .first-list a,
+            .last-list a {
+                color: #000;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="first-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portifolio</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="items"><i class="fas fa-bars"></i></div>
+            <div class="logo">Logo</div>
+            <ul class="last-list">
+                <li><a href="#">Client Opinions</a></li>
+                <li><a href="#">Testimonials Products </a></li>
+                <li><a href="#">Portifolio Clients</a></li>
+            </ul>
+            <div class="items-span">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <script>
+        let bars = document.querySelector('.items'),
+            barsI = document.querySelector('.items i')
+        firstList = document.querySelector('.first-list'),
+            itemSpans = document.querySelector('.items-span'),
+            lastList = document.querySelector('.last-list'),
+            spanList = document.querySelector('.items-span span');
+        bars.onclick = () => {
+            firstList.classList.toggle('open-1');
+            barsI.classList.toggle('rotate');
+            barsI.classList.toggle('fa-bars');
+            barsI.classList.toggle('fa-arrow-left');
+
+        }
+        itemSpans.onclick = () => {
+            lastList.classList.toggle('open-2');
+            itemSpans.classList.toggle('animate')
+        }
+    </script>
+</body>
+
+</html>
